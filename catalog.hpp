@@ -8,6 +8,7 @@
 
 #include <stdexcept>
 #include <string>
+#include <vector>
 
 // A product represents one particular kind of product, such as apples
 // or cereal.
@@ -24,9 +25,13 @@ public:
   // function throws std::invalid_argument.
   Product(const std::string& code,
           const std::string& name,
-          double price) {
+          double price) : code(code), name(name), price(price) {
     // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+    if (price < 0)
+    {
+      throw std::invalid_argument("Price is not positive");
+    }
+    // throw std::logic_error("not implemented yet");
   }
 
   ~Product() { }
@@ -50,31 +55,52 @@ public:
   // maxProducts is the maximum number of products that can be
   // stored. It must be positive, or else this function throws
   // std::invalid_argument.
-  Catalog(int maxProducts) {
+  Catalog(int maxProducts) maxProducts(maxProducts) {
     // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+    if (maxProducts <= 0)
+    {
+      throw std::invalid_argument("Max products is not posititve");
+    }
+    // throw std::logic_error("not implemented yet");
   }
   
   ~Catalog() {
     // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+    // Delete[];
+    // throw std::logic_error("not implemented yet");
   }
 
   // Accessors.
   int getMaxProducts() const {
     // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+    return maxProducts;
+    // throw std::logic_error("not implemented yet");
   }
   
   int getNumProducts() const {
     // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+    return numProducts;
+    // throw std::logic_error("not implemented yet");
   }
 
   // Return true when the catalog cannot fit any more products.
   bool isFull() const {
     // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+    if (numProducts == maxProducts)
+    {
+      throw std::overflow_error("This catalog is full");
+    }
+    else
+    {
+      Product P(code, name, price);
+      
+      code_vec[numProducts] = P.getCode();
+      name_vec[numProducts] = P.getName();
+      price_vec[numProducts] = P.getPrice();
+      
+      numProducts++
+    }
+    // throw std::logic_error("not implemented yet");
   }
 
   // Add a new product to the catalog with a given code and name.
@@ -103,9 +129,26 @@ public:
   // in the catalog.
   const Product& findCode(const std::string& code) const {
     // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+    for (int i = 0; i < maxProducts; i++)
+    {
+      if (code_vec[i] == code)
+      {
+        // return const code_vec[i]&;
+      }
+      // else
+      // {
+      //   throw std::invalid_argument("No product with that code exists");
+      // }
+    }
+    //throw std::logic_error("not implemented yet");
   }
 
 private:
   // TODO: add data members
+  int maxProducts;
+  int numProducts;
+  
+  std::vector<std::string> code_vec;
+  std::vector<std::string> name_vec;
+  std::vector<double> price_vec;
 };
