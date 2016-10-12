@@ -94,9 +94,11 @@ public:
     {
       Product P(code, name, price);
       
+      /*
       code_vec[numProducts] = P.getCode();
       name_vec[numProducts] = P.getName();
       price_vec[numProducts] = P.getPrice();
+      */
       
       numProducts++
     }
@@ -131,10 +133,10 @@ public:
     // TODO: implement this function properly
     for (int i = 0; i < maxProducts; i++)
     {
-      if (code_vec[i] == code)
+      /*if (code_vec[i] == code)
       {
         // return const code_vec[i]&;
-      }
+      }*/
       // else
       // {
       //   throw std::invalid_argument("No product with that code exists");
